@@ -1,21 +1,13 @@
 {
   "name": "ev3-js-motor",
+  "repository": "git://github.com/ev3-js/motor.git",
+  "description": "Motor device for ev3",
   "version": "0.3.0",
-  "description": "",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postversion": "git push && git push --tags && npm publish --access=public"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ev3-js/motor.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ev3-js/motor/issues"
-  },
-  "homepage": "https://github.com/ev3-js/motor#readme",
   "dependencies": {
     "component-inherit": "0.0.3",
     "ev3-js-device": "^0.1.0"
