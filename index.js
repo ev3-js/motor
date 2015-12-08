@@ -16,4 +16,4 @@ Motor.prototype.stop = function () {
   this.write('command', 'stop')
 }
 
-exports.default = Motor
+module.exports = Motor
