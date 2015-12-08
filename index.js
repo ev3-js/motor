@@ -7,8 +7,8 @@ function Motor (path) {
 
 inherit(Motor, Device)
 
-Motor.prototype.runForever = function () {
-  this.write('duty_cycle_sp', '50')
+Motor.prototype.runForever = function (s) {
+  this.write('duty_cycle_sp', s)
   this.write('command', 'run-forever')
 }
 
