@@ -8,9 +8,12 @@ function Motor (path) {
 inherit(Motor, Device)
 
 Motor.prototype.runForever = function (s) {
-  this.write('duty_cycle_sp', s)
+  this.write('duty_cycle_sp', s.toString())
   this.write('command', 'run-forever')
 }
 
-var motor = new Motor('/sys/class/tacho-motor/motor0')
-motor.runForever()
+Motor.prototype.stop = function () {
+  this.write('command', 'stop')
+}
+
+exports.default = Motor
