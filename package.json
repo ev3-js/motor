@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "component-inherit": "0.0.3",
-    "ev3-js-device": "^0.1.0",
-    "sleep": "^3.0.0"
+    "ev3-js-device": "^0.1.0"
   }
 }
