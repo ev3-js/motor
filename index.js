@@ -4,6 +4,7 @@
 
 var inherit = require('component-inherit')
 var Device = require('ev3-js-device')
+var sleep = require('sleep').usleep
 
 /**
  * Expose Motor
@@ -37,11 +38,12 @@ Motor.prototype.runForever = function (speed) {
  * @param  {Number} speed speed of motor
  * @param  {Number} degreees degrees to move
  * @api public
- */
+ */\
 Motor.prototype.runToRelPos = function (speed, degrees) {
   this.write('speed_sp', speed.toString())
   this.write('position_sp', degrees.toString())
   this.write('command', 'run-to-rel-pos')
+  return until.call(this)
 }
 
 /**
@@ -54,6 +56,7 @@ Motor.prototype.runToAbsPos = function (speed, position) {
   this.write('speed_sp', speed.toString())
   this.write('position_sp', position.toString())
   this.write('command', 'run-to-abs-pos')
+  return until.call(this)
 }
 
 /**
@@ -69,7 +72,19 @@ Motor.prototype.reset = function () {
  * @param {Boolean} coast whether to coast or actively brake
  * @api public
  */
-Motor.prototype.stop = function (coast) {
-  var command = coast ? 'coast' : 'brake'
-  this.write('command', command)
+Motor.prototype.stop = function () {
+  this.write('command', 'stop')
+}
+
+/**
+ * hold execution until move is finished
+ */
+function until () {
+  var incomplete = true
+  while (incomplete) {
+    if (this.read('state').trim().length > 0) {
+      incomplete = false
+    }
+    sleep(5000)
+  }
 }
