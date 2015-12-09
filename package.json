@@ -2,7 +2,7 @@
   "name": "ev3-js-motor",
   "repository": "git://github.com/ev3-js/motor.git",
   "description": "Motor device for ev3",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
