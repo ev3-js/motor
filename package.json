@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "component-inherit": "0.0.3",
-    "ev3-js-device": "^0.1.0",
+    "ev3-js-device": "^0.1.1",
     "ev3-js-devices": "^0.4.4"
   },
   "devDependencies": {
