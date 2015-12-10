@@ -2,8 +2,19 @@
  * Imports
  */
 
-var inherit = require('component-inherit')
-var Device = require('ev3-js-device')
+import inherit from 'component-inherit'
+import devices from 'ev3-js-devices'
+import Device from 'ev3-js-device'
+
+/**
+ * motor defaults
+ */
+
+var defaults = {
+  speed: 300,
+  braking: 'brake',
+  wait: true
+}
 
 /**
  * Expose Motor
@@ -13,9 +24,10 @@ module.exports = Motor
 
 /**
  * Motor device
- * @param {String} path path to file descriptor
+ * @param {String} port port
  */
-function Motor (path) {
+function Motor (port) {
+  const path = devices(port)
   Device.call(this, path)
   this.write('speed_regulation', 'on')
 }
@@ -31,8 +43,10 @@ Motor.prototype.is = function (flag) {
  * @param {Number} speed speed of motor
  * @api public
  */
-Motor.prototype.runForever = function (speed) {
+Motor.prototype.runForever = function (speed, opts) {
+  const {braking} = merge(defaults, opts)
   this.write('duty_cycle_sp', speed.toString())
+  this.write('stop_commands', braking)
   this.write('command', 'run-forever')
 }
 
@@ -42,11 +56,13 @@ Motor.prototype.runForever = function (speed) {
  * @param  {Number} degreees degrees to move
  * @api public
  */
-Motor.prototype.runToRelPos = function (speed, degrees) {
-  this.write('speed_sp', speed.toString())
+Motor.prototype.runToRelPos = function (degrees, opts) {
+  const {speed, braking, wait} = merge(defaults, opts)
   this.write('position_sp', degrees.toString())
+  this.write('speed_sp', speed.toString())
+  this.write('stop_commands', braking)
   this.write('command', 'run-to-rel-pos')
-  while (this.is('running')) {}
+  if (wait) { while (this.is('running')) {} }
   return
 }
 
@@ -56,11 +72,13 @@ Motor.prototype.runToRelPos = function (speed, degrees) {
  * @param  {Number} position position to finish at
  * @api public
  */
-Motor.prototype.runToAbsPos = function (speed, position) {
+Motor.prototype.runToAbsPos = function (position, opts) {
+  const {speed, braking, wait} = merge(defaults, opts)
   this.write('speed_sp', speed.toString())
   this.write('position_sp', position.toString())
+  this.write('stop_commands', braking)
   this.write('command', 'run-to-abs-pos')
-  while (this.is('running')) {}
+  if (wait) { while (this.is('running')) {} }
   return
 }
 
@@ -72,11 +90,26 @@ Motor.prototype.reset = function () {
   this.write('command', 'reset')
 }
 
-/*
- * stops the motor
- * @param {Boolean} coast whether to coast or actively brake
- * @api public
+/**
+ * stop the motor
  */
 Motor.prototype.stop = function () {
   this.write('command', 'stop')
+}
+
+/**
+ * merge objects
+ * @param  {Object} base   defaults
+ * @param  {Object} source override params
+ * @return {Object}        merged object
+ */
+function merge (base, source) {
+  if (!source || base === source) {
+    return
+  }
+  var newObj = base
+  for (var key in source) {
+    newObj[key] = source[key]
+  }
+  return newObj
 }
