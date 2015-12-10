@@ -46,7 +46,7 @@ Motor.prototype.is = function (flag) {
 Motor.prototype.runForever = function (speed, opts) {
   const {braking} = merge(defaults, opts)
   this.write('duty_cycle_sp', speed.toString())
-  this.write('stop_commands', braking)
+  this.write('stop_command', braking)
   this.write('command', 'run-forever')
 }
 
@@ -60,7 +60,7 @@ Motor.prototype.runToRelPos = function (degrees, opts) {
   const {speed, braking, wait} = merge(defaults, opts)
   this.write('position_sp', degrees.toString())
   this.write('speed_sp', speed.toString())
-  this.write('stop_commands', braking)
+  this.write('stop_command', braking)
   this.write('command', 'run-to-rel-pos')
   if (wait) { while (this.is('running')) {} }
   return
@@ -76,7 +76,7 @@ Motor.prototype.runToAbsPos = function (position, opts) {
   const {speed, braking, wait} = merge(defaults, opts)
   this.write('speed_sp', speed.toString())
   this.write('position_sp', position.toString())
-  this.write('stop_commands', braking)
+  this.write('stop_command', braking)
   this.write('command', 'run-to-abs-pos')
   if (wait) { while (this.is('running')) {} }
   return
