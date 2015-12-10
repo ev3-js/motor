@@ -105,7 +105,7 @@ Motor.prototype.stop = function () {
  */
 function merge (base, source) {
   if (!source || base === source) {
-    return
+    return base
   }
   var newObj = base
   for (var key in source) {
