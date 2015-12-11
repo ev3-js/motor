@@ -34,23 +34,23 @@ Run motor until stopped.
 
   - `speed` - speed at which to run motor
 
-### .runToRelPos(speed, degrees)
+### .runDegrees(degrees, opts)
 Run motor for a number of degrees.
 
   - `speed` - speed at which to run motor
   - `degrees` - number of degrees to turn the motor
 
-### .runToAbsPos(speed, position)
+### .runToAbsPos(position, opts)
 Run motor until a specified motor position.
 
   - `speed` - speed at which to run motor
   - `position` - desired motor position
 
-### .stop(coast)
+### .stop()
 Stop motor.
 
-  - `coast` - boolean value to coast or actively brake
- default is to brake.
+### .reset()
+Reset the position of the motor.
 
 ## License
 

@@ -9,6 +9,7 @@
     "postversion": "git push && git push --tags && npm publish --access=public"
   },
   "dependencies": {
+    "101": "^1.2.0",
     "component-inherit": "0.0.3",
     "ev3-js-device": "^0.1.1",
     "ev3-js-devices": "^0.4.6"
