@@ -29,16 +29,23 @@ setTimeout(function () {
 
 **Returns:** a motor device instance
 
-### .runForever(speed)
+### .forever(speed)
 Run motor until stopped.
 
   - `speed` - speed at which to run motor
 
-### .runDegrees(degrees, opts)
+### .degrees(degrees, opts)
 Run motor for a number of degrees.
 
-  - `speed` - speed at which to run motor
   - `degrees` - number of degrees to turn the motor
+  - `opts` - object of optional parameters
+
+### .timed(time, opts)
+Run motor for a specified amount of time.
+
+  - `time` - time in milliseconds
+  - `opts` - object of optional parameters
+
 
 ### .runToAbsPos(position, opts)
 Run motor until a specified motor position.
