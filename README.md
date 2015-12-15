@@ -40,6 +40,12 @@ Run motor for a number of degrees.
   - `degrees` - number of degrees to turn the motor
   - `opts` - object of optional parameters
 
+### .rotations(rotations, opts)
+Run motor for a number of rotations.
+
+  - `rotations` - number of rotations to turn the motor
+  - `opts` - object of optional parameters
+
 ### .timed(time, opts)
 Run motor for a specified amount of time.
 
