@@ -13,19 +13,17 @@ Motor device for ev3.
 
 ```js
 var Motor = require('ev3-js-motor')
-var motor = new Motor('/sys/class/tacho-motor')
-motor.runForever()
-
-setTimeout(function () {
-  motor.stop()
-}, 10000)
+Motor('a').degrees(120, {
+  speed: 300,
+  braking: 'coast'
+})
 ```
 
 ## API
 
-### Motor(path)
+### Motor(port)
 
-  - `path` - file path to motor
+  - `path` - port in which the motor is connected
 
 **Returns:** a motor device instance
 
