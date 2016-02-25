@@ -12,7 +12,8 @@
     "101": "^1.2.0",
     "component-inherit": "0.0.3",
     "ev3-js-device": "^0.1.2",
-    "ev3-js-devices": "^0.5.2"
+    "ev3-js-devices": "^0.5.2",
+    "node-cache": "^3.2.0"
   },
   "devDependencies": {}
 }
