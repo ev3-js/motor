@@ -2,7 +2,7 @@
   "name": "ev3-js-motor",
   "repository": "git://github.com/ev3-js/motor.git",
   "description": "Motor device for ev3",
-  "version": "0.5.10",
+  "version": "0.5.26",
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "101": "^1.2.0",
     "component-inherit": "0.0.3",
     "ev3-js-device": "^0.1.2",
-    "ev3-js-devices": "^0.4.14"
+    "ev3-js-devices": "^0.5.10",
   },
   "devDependencies": {}
 }
